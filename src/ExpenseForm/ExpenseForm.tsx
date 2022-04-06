@@ -1,26 +1,57 @@
+import { useState } from "react";
 import { Expense } from "../models/Expense";
 
+const expenseObj: Expense = {
+	amount: 0,
+	category: "",
+	createdBy: "",
+	createdOn: Date.now(),
+	expDate: 0,
+};
+
 export function ExpenseForm() {
-	const addExpenseHandler = () => {
-		let expense: Expense = {
-			amount: 300,
-			category: "EMIS",
-			createdBy: "chandan",
-			createdOn: Date.now(),
-			expDate: 1649245422315,
-		};
+	console.log("ExpenseForm Rendered");
+	const [amount, setAmount] = useState(500);
+	const [expDate, setExpDate] = useState(Date.now());
+	const categories = [
+		"Food Expenses",
+		"Travel Expenses",
+		"EMI",
+		"Entertaintment",
+		"Productivity",
+	];
 
-		console.log(expense);
-	};
+	let formHeader = "Add Expenses";
 
+	const addExpenseHandler = () => {};
 	return (
 		<>
-			<div style={{ display: "flex", flexDirection: "column", width: "450px" }}>
-				<input type="text" placeholder="Enter Amount" />
-				<input type="text" placeholder="Date of Expense" />
-				<input type="text" placeholder="Category" />
-				<button onClick={addExpenseHandler}>Add Expenses</button>
-			</div>
+			<h3>{formHeader}</h3>
+			{
+				<div
+					style={{ display: "flex", flexDirection: "column", width: "450px" }}
+				>
+					<input
+						type="number"
+						placeholder="Enter Amount"
+						onChange={(ev) => setAmount(parseInt(ev.target.value))}
+						value={amount}
+					/>
+					<select name="cars" id="cars">
+						<option value="Food Expenses">Food Expenses</option>
+						<option value="Travel Expenses">Travel Expenses</option>
+						<option value="EMI">EMI's</option>
+					</select>
+					<input
+						type="date"
+						value={expDate}
+						onChange={(ev) => setExpDate(parseInt(ev.target.value))}
+						placeholder="Date of Expense"
+					/>
+
+					<button onClick={addExpenseHandler}>Add Expenses</button>
+				</div>
+			}
 		</>
 	);
 }

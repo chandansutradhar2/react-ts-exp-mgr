@@ -9,34 +9,36 @@ import { Child2 } from "./PropsDemo/Child2";
 import { StateClassComponent } from "./StateDemo/StateClassCom";
 import store from "./store/store";
 import { Child3 } from "./PropsDemo/Child3";
+import { Expense } from "./models/Expense";
+
+const expArr: Expense[] = [];
 
 function App() {
-	const userName = "Chandan";
-	const [counter, setCounter] = useState(10);
-	console.log(store);
+	const [expenses, setExpenses] = useState(expArr);
 
-	// setInterval(() => {
-	// 	setCounter(counter + 1);
-	// }, 2000);
-
-	console.log("App rendered");
-
-	const emailChangeHandler = (email: string) => {
-		console.log(email);
+	const addExpHandler = (expense: Expense) => {
+		let tmp: Expense[] = expenses.slice();
+		tmp.push(expense);
+		setExpenses(tmp);
 	};
+
+	const onIncomeAdded = () => {};
 
 	return (
 		<div className="App">
 			<h3>Typescript Based Expense Manager</h3>
-			{/* <ExpenseForm />
-			<ExpenseList /> */}
-			<Child1
+			<ExpenseForm
+				onIncomeAdded={onIncomeAdded}
+				onExpAdded={(exp: Expense) => addExpHandler(exp)}
+			/>
+			<ExpenseList expenses={expenses} />
+			{/* <Child1
 				onEmailChange={emailChangeHandler}
 				expense={200}
 				userName={"chandan"}
 				token={"sometoken"}
 			/>
-			<Child2 username={"chandan"} />
+			<Child2 username={"chandan"} /> */}
 			{/* <Child3 counter={counter} /> */}
 		</div>
 	);

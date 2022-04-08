@@ -7,9 +7,10 @@ const expenseObj: Expense = {
 	createdBy: "",
 	createdOn: Date.now(),
 	expDate: 0,
+	title: "",
 };
 
-export function ExpenseForm() {
+export function ExpenseForm(props: any) {
 	console.log("ExpenseForm Rendered");
 	const [expense, setExpense] = useState(expenseObj);
 
@@ -23,9 +24,7 @@ export function ExpenseForm() {
 
 	let formHeader = "Add Expenses";
 
-	const addExpenseHandler = () => {
-		alert(JSON.stringify(expense));
-	};
+	const onClick = () => {};
 	return (
 		<>
 			<h3>{formHeader}</h3>
@@ -33,6 +32,15 @@ export function ExpenseForm() {
 				<div
 					style={{ display: "flex", flexDirection: "column", width: "450px" }}
 				>
+					<input
+						type="text"
+						placeholder="Enter Exp Head"
+						value={expense.title}
+						onChange={(ev) => {
+							setExpense({ ...expense, title: ev.target.value });
+						}}
+					/>
+
 					<input
 						type="number"
 						placeholder="Enter Amount"
@@ -61,7 +69,9 @@ export function ExpenseForm() {
 						}}
 					/>
 
-					<button onClick={addExpenseHandler}>Add Expenses</button>
+					<button onClick={() => props.onExpAdded(expense)}>
+						Add Expenses
+					</button>
 				</div>
 			}
 		</>

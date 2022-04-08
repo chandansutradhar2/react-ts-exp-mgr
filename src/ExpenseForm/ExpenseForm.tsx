@@ -33,6 +33,7 @@ export function ExpenseForm(props: any) {
 			.then((res) => {
 				if (res.status == 200) {
 					alert("expenses saved successfully");
+
 					props.onExpAdded(expense);
 				} else {
 					alert("error saving data");

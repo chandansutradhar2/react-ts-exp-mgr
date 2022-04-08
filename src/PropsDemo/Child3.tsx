@@ -6,6 +6,6 @@ export class Child3 extends React.Component {
 	}
 
 	render() {
-		return <h4>Child 3 Component</h4>;
+		return <h4>Child 3 Component {this.props}</h4>;
 	}
 }

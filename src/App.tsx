@@ -20,12 +20,22 @@ function App() {
 	// }, 2000);
 
 	console.log("App rendered");
+
+	const emailChangeHandler = (email: string) => {
+		console.log(email);
+	};
+
 	return (
 		<div className="App">
 			<h3>Typescript Based Expense Manager</h3>
 			{/* <ExpenseForm />
 			<ExpenseList /> */}
-			<Child1 expense={200} userName={"chandan"} token={"sometoken"} />
+			<Child1
+				onEmailChange={emailChangeHandler}
+				expense={200}
+				userName={"chandan"}
+				token={"sometoken"}
+			/>
 			<Child2 username={"chandan"} />
 			{/* <Child3 counter={counter} /> */}
 		</div>

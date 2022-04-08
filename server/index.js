@@ -43,6 +43,24 @@ app.post("/api/expense/add", (req, res) => {
 	}
 });
 
+app.post("/api/auth/login", (req, res) => {
+	if (req.body.email && req.body.password) {
+		res.send({
+			result: true,
+			token: "u83hu38j3w2",
+			user: {
+				fullName: "Chandan Naresh",
+				dob: "06/03/1983",
+				email: "chandansutradhar2@gmail.com",
+				mobileNo: "8080811145",
+				country: "india",
+			},
+		});
+	} else {
+		res.status(401).send("unauthorized");
+	}
+});
+
 app.listen(4000, () => {
 	console.log("server started and listening on port 4000");
 });

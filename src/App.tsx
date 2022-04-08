@@ -10,6 +10,7 @@ import { StateClassComponent } from "./StateDemo/StateClassCom";
 import store from "./store/store";
 import { Child3 } from "./PropsDemo/Child3";
 import { Expense } from "./models/Expense";
+import { Login } from "./Login/Login";
 
 const expArr: Expense[] = [];
 
@@ -27,11 +28,12 @@ function App() {
 	return (
 		<div className="App">
 			<h3>Typescript Based Expense Manager</h3>
-			<ExpenseForm
+			<Login />
+			{/* <ExpenseForm
 				onIncomeAdded={onIncomeAdded}
 				onExpAdded={(exp: Expense) => addExpHandler(exp)}
 			/>
-			<ExpenseList expenses={expenses} />
+			<ExpenseList expenses={expenses} /> */}
 			{/* <Child1
 				onEmailChange={emailChangeHandler}
 				expense={200}

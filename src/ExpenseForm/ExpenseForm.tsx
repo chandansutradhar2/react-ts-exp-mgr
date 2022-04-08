@@ -1,10 +1,11 @@
+import axios from "axios";
 import { useState } from "react";
 import { Expense } from "../models/Expense";
 
 const expenseObj: Expense = {
 	amount: 100,
 	category: "",
-	createdBy: "",
+	createdBy: "chandan",
 	createdOn: Date.now(),
 	expDate: 0,
 	title: "",
@@ -24,7 +25,22 @@ export function ExpenseForm(props: any) {
 
 	let formHeader = "Add Expenses";
 
-	const onClick = () => {};
+	const onClick = () => {
+		//todo communicate with server to save expense.
+		axios
+			.post("http://localhost:4000/api/expense/add", expense)
+			.then((res) => {
+				if (res.status == 200) {
+					alert("expenses saved successfully");
+					props.onExpAdded(expense);
+				} else {
+					alert("error saving data");
+				}
+			})
+			.catch((err) => {
+				alert(err.message);
+			});
+	};
 	return (
 		<>
 			<h3>{formHeader}</h3>
@@ -69,9 +85,7 @@ export function ExpenseForm(props: any) {
 						}}
 					/>
 
-					<button onClick={() => props.onExpAdded(expense)}>
-						Add Expenses
-					</button>
+					<button onClick={() => onClick()}>Add Expenses</button>
 				</div>
 			}
 		</>

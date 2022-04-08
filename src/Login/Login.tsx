@@ -1,10 +1,27 @@
+import axios from "axios";
 import { useState } from "react";
 
 export function Login() {
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
 
-	const onLogin = () => {};
+	const onLogin = () => {
+		console.log(email, password);
+		//todo: data validation & sanitzation
+		axios
+			.post("http://localhost:4000/api/auth/login", {
+				email: email,
+				password: password,
+			})
+			.then((res) => {
+				if (res.status == 200) {
+					alert("login successful");
+				} else {
+					alert("invalid credentials");
+				}
+			})
+			.catch((err) => alert(err));
+	};
 	return (
 		<div>
 			{

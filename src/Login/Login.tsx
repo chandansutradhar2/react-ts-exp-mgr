@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useState } from "react";
-
+import { config } from "../apiconfig";
 export function Login() {
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
@@ -9,7 +9,7 @@ export function Login() {
 		console.log(email, password);
 		//todo: data validation & sanitzation
 		axios
-			.post("http://localhost:4000/api/auth/login", {
+			.post(config.apiUrl + "/auth/login", {
 				email: email,
 				password: password,
 			})

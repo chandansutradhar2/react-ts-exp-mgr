@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useState } from "react";
+import { config } from "../apiconfig";
 import { Expense } from "../models/Expense";
 
 const expenseObj: Expense = {
@@ -28,7 +29,7 @@ export function ExpenseForm(props: any) {
 	const onClick = () => {
 		//todo communicate with server to save expense.
 		axios
-			.post("http://localhost:4000/api/expense/add", expense)
+			.post(config.apiUrl + "/expense/add", expense)
 			.then((res) => {
 				if (res.status == 200) {
 					alert("expenses saved successfully");

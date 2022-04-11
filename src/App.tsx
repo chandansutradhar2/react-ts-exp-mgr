@@ -11,6 +11,10 @@ import store from "./store/store";
 import { Child3 } from "./PropsDemo/Child3";
 import { Expense } from "./models/Expense";
 import { Login } from "./Login/Login";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { Home } from "./Home/Home";
+import { ExpensView } from "./Expenses/EspenseView";
+import { MenuBar } from "./MenuBar/MenuBar";
 
 const expArr: Expense[] = [];
 
@@ -27,21 +31,14 @@ function App() {
 
 	return (
 		<div className="App">
-			<h3>Typescript Based Expense Manager</h3>
-			<Login />
-			{/* <ExpenseForm
-				onIncomeAdded={onIncomeAdded}
-				onExpAdded={(exp: Expense) => addExpHandler(exp)}
-			/>
-			<ExpenseList expenses={expenses} /> */}
-			{/* <Child1
-				onEmailChange={emailChangeHandler}
-				expense={200}
-				userName={"chandan"}
-				token={"sometoken"}
-			/>
-			<Child2 username={"chandan"} /> */}
-			{/* <Child3 counter={counter} /> */}
+			<BrowserRouter>
+				<MenuBar />
+				<Routes>
+					<Route path="/" element={<Home />} />
+					<Route path="/login" element={<Login />} />
+					<Route path="/expense" element={<ExpensView />} />
+				</Routes>
+			</BrowserRouter>
 		</div>
 	);
 }

@@ -38,14 +38,14 @@ export function MenuBar() {
 						</li>
 
 						<li className="nav-item">
-							<Link className="nav-link" to={"/expense"}>
+							<Link className="nav-link" to={"/investment"}>
 								Invesments
 							</Link>
 						</li>
 						<li className="nav-item">
-							<a className="nav-link" href="#" tabindex="-1">
+							<Link className="nav-link" to={"/"} tabIndex="-1">
 								Learnings
-							</a>
+							</Link>
 						</li>
 					</ul>
 					<form className="d-flex">

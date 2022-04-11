@@ -15,6 +15,10 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { Home } from "./Home/Home";
 import { ExpensView } from "./Expenses/EspenseView";
 import { MenuBar } from "./MenuBar/MenuBar";
+import { InvestmentView } from "./Investment/InvestmentView";
+import { MutualFund } from "./Investment/MutualFund";
+import { DebtFund } from "./Investment/DebtFund";
+import { Stocks } from "./Investment/Stocks";
 
 const expArr: Expense[] = [];
 
@@ -37,6 +41,11 @@ function App() {
 					<Route path="/" element={<Home />} />
 					<Route path="/login" element={<Login />} />
 					<Route path="/expense" element={<ExpensView />} />
+					<Route path="/investment" element={<InvestmentView />}>
+						<Route path="/investment/mf" element={<MutualFund />} />
+						<Route path="/investment/share" element={<Stocks />} />
+						<Route path="/investment/debt" element={<DebtFund />} />
+					</Route>
 				</Routes>
 			</BrowserRouter>
 		</div>

@@ -21,6 +21,8 @@ export function Login() {
 				if (res.status == 200) {
 					console.log(res.data.user);
 					showSuccess(true);
+					localStorage.setItem("user", JSON.stringify(res.data.user));
+					localStorage.setItem("token", JSON.stringify(res.data.token));
 					setTimeout(() => {
 						navigate("/", {
 							state: res.data.user,

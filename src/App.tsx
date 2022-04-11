@@ -1,4 +1,4 @@
-import React, { useState, createContext } from "react";
+import React, { useState, createContext, useEffect } from "react";
 import logo from "./logo.svg";
 import "./App.css";
 import store from "./store/store";
@@ -46,13 +46,20 @@ function App() {
 	const [appState, setAppState] = useState(defaultValue);
 	const [user, setUser] = useState(userObj);
 
+	useEffect(() => {
+		let tmp = localStorage.getItem("user");
+		validateToken();
+		if (tmp) {
+			alert(tmp);
+			console.log(JSON.parse(tmp));
+			setUser(JSON.parse(tmp));
+		}
+	}, []);
+
+	const validateToken = () => {};
 	//todo: logic to identfy and find user;
 
 	//initial state update
-	// let tmp = localStorage.getItem("user");
-	// if (tmp) {
-	// 	setUser(JSON.parse(tmp));
-	// }
 
 	return (
 		//setting up UserCOntext across app by passing state user value

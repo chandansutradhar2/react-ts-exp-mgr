@@ -49,10 +49,10 @@ function App() {
 	//todo: logic to identfy and find user;
 
 	//initial state update
-	let tmp = localStorage.getItem("user");
-	if (tmp) {
-		setUser(JSON.parse(tmp));
-	}
+	// let tmp = localStorage.getItem("user");
+	// if (tmp) {
+	// 	setUser(JSON.parse(tmp));
+	// }
 
 	return (
 		//setting up UserCOntext across app by passing state user value

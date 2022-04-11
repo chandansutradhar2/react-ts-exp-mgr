@@ -1,6 +1,12 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 export function MenuBar() {
+	const navigate = useNavigate();
+
+	const redirectToLogin = () => {
+		navigate("/login");
+	};
+
 	return (
 		<nav className="navbar navbar-expand-lg navbar-dark bg-dark">
 			<div className="container-fluid">
@@ -49,7 +55,12 @@ export function MenuBar() {
 							placeholder="Search"
 							aria-label="Search"
 						/>
-						<button className="btn btn-outline-primary">Login</button>
+						<button
+							className="btn btn-outline-primary"
+							onClick={redirectToLogin}
+						>
+							Login
+						</button>
 					</form>
 				</div>
 			</div>

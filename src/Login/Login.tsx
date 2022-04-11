@@ -1,8 +1,10 @@
 import axios from "axios";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { Observable } from "rxjs/internal/Observable";
 import { config } from "../apiconfig";
 export function Login() {
+	const navigate = useNavigate();
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
 	const [alert, showAlert] = useState(false);
@@ -18,6 +20,9 @@ export function Login() {
 			.then((res) => {
 				if (res.status == 200) {
 					showSuccess(true);
+					setTimeout(() => {
+						navigate("/");
+					}, 2000);
 				} else {
 					showAlert(true);
 				}

@@ -20,7 +20,7 @@ let expenses = [];
 
 app.post("/api/expense/add", (req, res) => {
 	//todo save the expenses
-	console.log(req.body.createdBy);
+	console.log(req.body);
 	if (
 		req.body.amount &&
 		req.body.title &&

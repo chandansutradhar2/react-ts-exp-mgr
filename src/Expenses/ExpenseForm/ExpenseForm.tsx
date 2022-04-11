@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useState } from "react";
-import { config } from "../apiconfig";
-import { Expense } from "../models/Expense";
+import { config } from "../../apiconfig";
+import { Expense } from "../../models/Expense";
 
 const expenseObj: Expense = {
 	amount: 100,

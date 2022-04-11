@@ -19,9 +19,12 @@ export function Login() {
 			})
 			.then((res) => {
 				if (res.status == 200) {
+					console.log(res.data.user);
 					showSuccess(true);
 					setTimeout(() => {
-						navigate("/");
+						navigate("/", {
+							state: res.data.user,
+						});
 					}, 2000);
 				} else {
 					showAlert(true);

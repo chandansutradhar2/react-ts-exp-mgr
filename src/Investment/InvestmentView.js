@@ -1,8 +1,12 @@
 import { Link, Outlet } from "react-router-dom";
 import { useLocation } from "react-router-dom";
 import { SavingPredictor } from "./SavingPredictor";
+import { StateContext } from "../App";
+import { useContext } from "react";
 
 export function InvestmentView() {
+	// const stateContext = useContext(StateContext);
+	// console.log(stateContext);
 	const { state } = useLocation();
 
 	return (

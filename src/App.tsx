@@ -1,15 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, createContext } from "react";
 import logo from "./logo.svg";
 import "./App.css";
-import { ExpenseForm } from "./Expenses/ExpenseForm/ExpenseForm";
-import { ExpenseList } from "./Expenses/ExpenseList/ExpenseList";
-import { ExpenseItem } from "./Expenses/ExpenseItem/ExpenseItem";
-import { Child1 } from "./PropsDemo/Child1";
-import { Child2 } from "./PropsDemo/Child2";
-import { StateClassComponent } from "./StateDemo/StateClassCom";
 import store from "./store/store";
-import { Child3 } from "./PropsDemo/Child3";
-import { Expense } from "./models/Expense";
 import { Login } from "./Login/Login";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { Home } from "./Home/Home";
@@ -20,25 +12,56 @@ import { MutualFund } from "./Investment/MutualFund";
 import { DebtFund } from "./Investment/DebtFund";
 import { Stocks } from "./Investment/Stocks";
 
+export const StateContext = createContext({
+	expenses: [
+		{
+			amount: 300,
+			category: "Travel Expenses",
+			createdBy: "chandan",
+			createdOn: 1649672825391,
+			expDate: 2000,
+			title: "edede",
+		},
+	],
+	user: null,
+});
+
+// const userContext = createContext(null);
+// const ExpenseContext = createContext(null);
+
 function App() {
-	const onIncomeAdded = () => {};
+	const [appState, setAppState] = useState({
+		expenses: [
+			{
+				amount: 300,
+				category: "Travel Expenses",
+				createdBy: "chandan",
+				createdOn: 1649672825391,
+				expDate: 2000,
+				title: "edede",
+			},
+		],
+		user: null,
+	});
 
 	return (
-		<div className="App">
-			<BrowserRouter>
-				<MenuBar />
-				<Routes>
-					<Route path="/" element={<Home />} />
-					<Route path="/login" element={<Login />} />
-					<Route path="/expense" element={<ExpensView />} />
-					<Route path="/investment" element={<InvestmentView />}>
-						<Route path="/investment/mf" element={<MutualFund />} />
-						<Route path="/investment/share" element={<Stocks />} />
-						<Route path="/investment/debt" element={<DebtFund />} />
-					</Route>
-				</Routes>
-			</BrowserRouter>
-		</div>
+		<StateContext.Provider value={appState}>
+			<div className="App">
+				<BrowserRouter>
+					<MenuBar />
+					<Routes>
+						<Route path="/" element={<Home />} />
+						<Route path="/login" element={<Login />} />
+						<Route path="/expense" element={<ExpensView />} />
+						<Route path="/investment" element={<InvestmentView />}>
+							<Route path="/investment/mf" element={<MutualFund />} />
+							<Route path="/investment/share" element={<Stocks />} />
+							<Route path="/investment/debt" element={<DebtFund />} />
+						</Route>
+					</Routes>
+				</BrowserRouter>
+			</div>
+		</StateContext.Provider>
 	);
 }
 

@@ -6,7 +6,7 @@ export function Login() {
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
 	const [alert, showAlert] = useState(false);
-
+	const [success, showSuccess] = useState(false);
 	const onLogin = () => {
 		console.log(email, password);
 		//todo: data validation & sanitzation
@@ -17,6 +17,7 @@ export function Login() {
 			})
 			.then((res) => {
 				if (res.status == 200) {
+					showSuccess(true);
 				} else {
 					showAlert(true);
 				}
@@ -36,6 +37,11 @@ export function Login() {
 
 	return (
 		<div className="container">
+			{success ? (
+				<div className="alert alert-success" role="alert">
+					Login Success.redirecting to home......
+				</div>
+			) : null}
 			{alert ? (
 				<div className="alert alert-danger" role="alert">
 					Failed to Connect to the Server.

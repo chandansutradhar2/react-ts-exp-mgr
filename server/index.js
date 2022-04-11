@@ -16,7 +16,32 @@ app.get("/api", (req, res, next) => {
 	res.send("api working fine");
 });
 
-let expenses = [];
+let expenses = [
+	{
+		amount: 3000,
+		category: "Travel Expenses",
+		createdBy: "chandan",
+		createdOn: 1649672825391,
+		expDate: 2000,
+		title: "Petrol",
+	},
+	{
+		amount: 450,
+		category: "Travel Expenses",
+		createdBy: "chandan",
+		createdOn: 1649672825391,
+		expDate: 2000,
+		title: "PUC",
+	},
+	{
+		amount: 350,
+		category: "Food Expenses",
+		createdBy: "chandan",
+		createdOn: 1649672825391,
+		expDate: 2000,
+		title: "Pizza",
+	},
+];
 
 app.post("/api/expense/add", (req, res) => {
 	//todo save the expenses
@@ -41,6 +66,10 @@ app.post("/api/expense/add", (req, res) => {
 	} else {
 		res.status(402).send("invalid expense format");
 	}
+});
+
+app.get("/api/expense/list", (req, res) => {
+	res.status(200).send({ expenses: expenses });
 });
 
 app.post("/api/auth/login", (req, res) => {

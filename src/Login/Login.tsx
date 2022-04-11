@@ -1,9 +1,11 @@
 import axios from "axios";
 import { useState } from "react";
+import { Observable } from "rxjs/internal/Observable";
 import { config } from "../apiconfig";
 export function Login() {
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
+	const [alert, showAlert] = useState(false);
 
 	const onLogin = () => {
 		console.log(email, password);
@@ -15,34 +17,65 @@ export function Login() {
 			})
 			.then((res) => {
 				if (res.status == 200) {
-					alert("login successful");
 				} else {
-					alert("invalid credentials");
+					showAlert(true);
 				}
 			})
-			.catch((err) => alert(err));
+			.catch((err) => {
+				showAlert(true);
+			});
 	};
+
+	function fun1() {
+		return new Promise((resolve, reject) => {
+			setInterval(() => {
+				resolve(10);
+			}, 2000);
+		});
+	}
+
 	return (
-		<div>
+		<div className="container">
+			{alert ? (
+				<div className="alert alert-danger" role="alert">
+					Failed to Connect to the Server.
+				</div>
+			) : null}
 			{
 				<div
 					style={{ display: "flex", flexDirection: "column", width: "450px" }}
 				>
-					<input
-						type="text"
-						value={email}
-						placeholder="Enter EmailId"
-						onChange={(ev) => setEmail(ev.target.value)}
-					/>
+					<div className="input-group mb-3">
+						<label className="form-label">Email address</label>
+						<span className="input-group-text" id="basic-addon1">
+							@
+						</span>
 
-					<input
-						type="password"
-						value={password}
-						placeholder="Enter Password"
-						onChange={(ev) => setPassword(ev.target.value)}
-					/>
+						<input
+							type="email"
+							onChange={(ev) => setEmail(ev.target.value)}
+							value={email}
+							className="form-control"
+							placeholder="name@example.com"
+						/>
+					</div>
 
-					<button onClick={onLogin}>Login</button>
+					<div className="input-group mb-3">
+						<label className="form-label">Password</label>
+						<span className="input-group-text" id="basic-addon1">
+							P
+						</span>
+						<input
+							type="password"
+							onChange={(ev) => setPassword(ev.target.value)}
+							value={password}
+							className="form-control"
+						/>
+					</div>
+
+					<button type="button" className="btn btn-primary" onClick={onLogin}>
+						Login
+					</button>
 				</div>
 			}
 		</div>
